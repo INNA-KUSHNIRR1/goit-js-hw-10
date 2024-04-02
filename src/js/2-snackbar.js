@@ -7,9 +7,8 @@ form.addEventListener('submit', onSubmitForm);
 function onSubmitForm(event) {
   event.preventDefault();
 
-  const form = event.currentTarget.elements;
-  const delay = Number(form.delay.value);
-  const state = form.state.value;
+  const delay = Number(form.elements.delay.value);
+  const state = form.elements.state.value;
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -41,4 +40,5 @@ function onSubmitForm(event) {
         position: 'topRight',
       });
     });
+  form.reset();
 }

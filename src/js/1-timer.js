@@ -36,7 +36,6 @@ const options = {
         color: 'green',
         position: 'topRight',
       });
-
       ref.btnStart.setAttribute('disabled', 'disabled');
     } else {
       ref.btnStart.removeAttribute('disabled', 'disabled');
@@ -52,28 +51,26 @@ ref.btnStart.addEventListener('click', () => {
   ref.dateTimePicker.setAttribute('disabled', 'disabled');
   intervalId = setInterval(() => {
     diffDate = userSelectedDate - Date.now();
-
     const { days, hours, minutes, seconds } = convertMs(diffDate);
-    console.log(convertMs(diffDate));
-    function addLeadingZero(obg) {
-      if (diffDate <= 1000) {
-        clearInterval(intervalId);
-        iziToast.show({
-          title: 'Stop sleeping!!!',
-          message: 'Wake up! ',
-          color: 'red',
-          position: 'bottomCenter',
-        });
-      }
-      ref.currentDays.textContent = `${days}`.padStart(2, '0');
-      ref.currentHours.textContent = `${hours}`.padStart(2, '0');
-      ref.currentMinutes.textContent = `${minutes}`.padStart(2, '0');
-      ref.currentSeconds.textContent = `${seconds}`.padStart(2, '0');
-    }
     addLeadingZero({ days, hours, minutes, seconds });
   }, 1000);
 });
-
+function addLeadingZero(obj) {
+  console.log(obj);
+  if (diffDate <= 1000) {
+    clearInterval(intervalId);
+    iziToast.show({
+      title: 'Stop sleeping!!!',
+      message: 'Wake up! ',
+      color: 'red',
+      position: 'bottomCenter',
+    });
+  }
+  ref.currentDays.textContent = `${days}`.padStart(2, '0');
+  ref.currentHours.textContent = `${hours}`.padStart(2, '0');
+  ref.currentMinutes.textContent = `${minutes}`.padStart(2, '0');
+  ref.currentSeconds.textContent = `${seconds}`.padStart(2, '0');
+}
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
