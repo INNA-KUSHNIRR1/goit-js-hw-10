@@ -55,8 +55,7 @@ ref.btnStart.addEventListener('click', () => {
     addLeadingZero({ days, hours, minutes, seconds });
   }, 1000);
 });
-function addLeadingZero(obj) {
-  console.log(obj);
+function addLeadingZero({ days, hours, minutes, seconds }) {
   if (diffDate <= 1000) {
     clearInterval(intervalId);
     iziToast.show({
